@@ -5,6 +5,9 @@ Wagwag::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
+  resources :charges
+
   root to: 'staticpages#home'
 
   match 'users/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
@@ -16,6 +19,7 @@ Wagwag::Application.routes.draw do
   get "staticpages/home"
   get "staticpages/about"
   get "staticpages/contact"
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

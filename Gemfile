@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#Stripe
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.8'
 
