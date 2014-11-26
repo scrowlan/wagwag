@@ -1,21 +1,25 @@
-Wagwag::Application.routes.draw do
-   
+Rails.application.routes.draw do
+
+
+
+  #omniauth routes 
+  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+
+  resources :users 
+
+  root 'staticpages#home'
+  get 'staticpages/home'
+  get 'staticpages/about'
+  
+  get 'staticpages/contact'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root to: 'staticpages#home'
-
-  match 'users/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  match 'users/auth/failure', to: redirect('/'), via: [:get, :post]
-  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
-  
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
-
-  get "staticpages/home"
-  get "staticpages/about"
-  get "staticpages/contact"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
