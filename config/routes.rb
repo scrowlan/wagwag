@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
 
+  resources :charges
+
+  root to: 'staticpages#home'
 
   #omniauth routes 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
@@ -20,6 +25,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
