@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :users 
 
-  root 'staticpages#home'
   get 'staticpages/home'
   get 'staticpages/about'
   
