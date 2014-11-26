@@ -7,5 +7,6 @@ class CreateIdentities < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_column :users, :password_digest, :string
   end
 end

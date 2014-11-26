@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wagwag</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>Wag Wag</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div id="user-widget">
   <% if current_user %>
-    Welcome <strong><%= current_user.name %></strong>!
+    Welcome <strong><%= current_user.email %></strong>!
     <%= link_to "Sign out", signout_path, id: "sign_out" %>
   <% else %>
-    <%= link_to "Sign in with Facebook", "/users/auth/facebook", id: "sign_in" %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
   <% end %>
 </div>
-
 <%= yield %>
 
 </body>
