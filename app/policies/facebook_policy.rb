@@ -20,6 +20,9 @@ class FacebookPolicy
     @auth.info.nickname
   end
 
+  #def image_url
+    #"http://graph.facebook.com/#{auth.info.nickname}/picture?type=large"
+  #end
 
   def uid
     @auth.uid
