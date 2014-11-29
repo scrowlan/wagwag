@@ -43,6 +43,7 @@ class OAuthUser
           :provider      => @provider,
           :uid           => @policy.uid,
           :oauth_token   => @policy.oauth_token,
+         # :oauth_expires => @policy.oauth_expires,
           :oauth_secret  => @policy.oauth_secret,
           :username      => @policy.username
         )
@@ -53,13 +54,18 @@ class OAuthUser
 
     def create_new_user
       @user = User.create!(
-       # :first_name => @policy.first_name,
-        #:last_name  => @policy.last_name,
+        :first_name => @policy.first_name,
+        :last_name  => @policy.last_name,
         :email      => @policy.email
+        #:picture    => image
       )
     end
 
-  
+    #def image
+     # image = open(URI.parse(@policy.image_url), :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE)
+     # def image.original_filename; base_uri.path.split('/').last; end
+     # image
+    #end
 
     def refresh_tokens
       @account.update_attributes(
