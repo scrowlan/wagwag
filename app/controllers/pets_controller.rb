@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
 
   # GET /pets
   # GET /pets.json
@@ -10,11 +11,19 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
+    @pet = Pet.find(params[:id])
   end
 
   # GET /pets/new
   def new
     @pet = Pet.new
+    @users = []
+
+    if should_show_user_picker
+      #get all users to show in admin picker
+      @users = User.all.order(:email)
+    end
+
   end
 
   # GET /pets/1/edit
@@ -25,6 +34,17 @@ class PetsController < ApplicationController
   # POST /pets.json
   def create
     @pet = Pet.new(pet_params)
+
+    if current_user.is_customer
+      #if the current user is a customer, assign the pet to them
+      @pet.user_id = current_user.id
+    elsif params[:user_id] != nil
+      #if the user_id param is populated
+      @pet.user = User.find(params[:user_id])
+    else
+      #uh what? Lets try that again
+      redirect_to :new
+    end
 
     respond_to do |format|
       if @pet.save
@@ -71,4 +91,9 @@ class PetsController < ApplicationController
     def pet_params
       params.require(:pet).permit(:name, :user_id)
     end
+
+  def should_show_user_picker
+    !current_user.is_customer
+  end
+
 end
