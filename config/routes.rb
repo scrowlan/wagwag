@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pets
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+  match 'sign_in_page', to: 'sessions#new', as: 'sign_in_page', via: [:get, :post]
 
   resources :users
   resources :sessions
