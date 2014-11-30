@@ -1,0 +1,3 @@
+class SingleWalk < Schedule
+
+end

@@ -1,0 +1,9 @@
+<h1>Schedules#create</h1>
+<p>Find me in app/views/schedules/create.html.erb</p>
+
+<%= simple_form_for @schedule do |f| %>
+    <%= f.input :date %>
+    <%= f.input :note %>
+    <%= f.input :start_time %>
+    <%= f.submit %>
+<% end %>

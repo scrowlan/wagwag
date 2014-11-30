@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'schedules/new'
+
+  get 'schedules/create'
+
+  get 'schedules/destroy'
+
+  get 'schedules/update'
+
+  get 'schedules/list'
+
+  get 'schedules/show'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
@@ -14,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :schedules
 
   get 'staticpages/home'
   get 'staticpages/about'
