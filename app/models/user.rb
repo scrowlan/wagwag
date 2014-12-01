@@ -1,6 +1,7 @@
   class User < ActiveRecord::Base
     has_many :accounts, :dependent => :destroy
     has_many :schedules, :dependent => :destroy
+    has_many :pets, :dependent => :destroy
     before_create :assign_default_role
     validates_uniqueness_of :email
 

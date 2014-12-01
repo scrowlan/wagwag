@@ -5,13 +5,21 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    if current_user.is_customer
+      @pets = current_user.pets.all
+    else
+      @pets = Pet.all
+    end
   end
 
   # GET /pets/1
   # GET /pets/1.json
   def show
-    @pet = Pet.find(params[:id])
+    if current_user.is_customer
+      @pet = current_user.pets.find(params[:id])
+    else
+      @pet = Pet.find(params[:id])
+    end
   end
 
   # GET /pets/new
@@ -91,6 +99,11 @@ class PetsController < ApplicationController
 
   def should_show_user_picker
     !current_user.is_customer
+  end
+
+  def correct_user
+    @pet = current_user.pets.find_by_id(params[:id])
+    redirect_to root_url if @pet.nil?
   end
 
 end
