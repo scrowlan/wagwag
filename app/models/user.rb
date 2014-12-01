@@ -11,4 +11,17 @@
     def assign_default_role
       self.role = "customer" if self.role.blank?
     end
+
+    def is_customer
+      return self.role.to_s == "customer"
+    end
+
+    def is_admin
+      return self.role.to_s == "admin"
+    end
+
+    def is_walker
+      return self.role.to_s == "walker"
+    end
+
   end
