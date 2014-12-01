@@ -1,0 +1,7 @@
+<%= simple_form_for @pet do |f| %>
+    <%= f.input :name %>
+    <% if @users != nil && @users.count > 0 %>
+        <%= f.collection_select(:user_id, @users, :id, :email, include_blank: true) %>
+    <% end %>
+    <%= f.button :submit %>
+<% end %>

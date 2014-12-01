@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128162338) do
+ActiveRecord::Schema.define(version: 20141129220115) do
 
   create_table "accounts", force: true do |t|
     t.integer  "user_id"
@@ -44,13 +44,39 @@ ActiveRecord::Schema.define(version: 20141128162338) do
     t.datetime "updated_at"
   end
 
+  create_table "pets", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pets", ["user_id"], name: "index_pets_on_user_id"
+
   create_table "regular_users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "schedules", force: true do |t|
+    t.time     "start_time"
+    t.string   "location"
+    t.integer  "user_id"
+    t.text     "note"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id"
+
+  create_table "single_walks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -65,6 +91,9 @@ ActiveRecord::Schema.define(version: 20141128162338) do
     t.string   "name"
     t.string   "password_digest"
     t.string   "role"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "picture"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
